@@ -27,3 +27,20 @@ function divide(input1, input2){
         return result;
     }
 }
+
+function operate(input1, input2, operator){
+    switch(operator){
+        case "add":
+            add(input1, input2);
+            break;
+        case "subtract":
+            subtract(input1, input2);
+            break;
+        case "multiply":
+            multiply(input1, input2);
+            break;
+        case "divide":
+            divide(input1, input2);
+            break;
+    }
+}
