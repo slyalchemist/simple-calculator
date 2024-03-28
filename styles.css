@@ -1,0 +1,45 @@
+.container{
+    width: 400px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.display{
+    width: 100%;
+    height: 150px;
+}
+
+.buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.button{
+    border: 1px solid black;
+    border-radius: 46px;
+    width: 92px;
+    height: 92px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zero, .operate{
+    width: 180px;
+}
+
+.clear{
+    width: 270px;
+}
