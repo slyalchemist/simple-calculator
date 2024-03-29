@@ -1,22 +1,17 @@
-let input1;
-let input2;
 let result;
-let operator;
+let operator = "add";
 let displayValue;
 
 function add(input1, input2){
-    result = input1 + input2;
-    return result;
+    result = parseInt(input1) + parseInt(input2);
 }
 
 function subtract(input1, input2){
     result = input1 - input2;
-    return result;
 }
 
 function multiply(input1, input2){
     result = input1 * input2;
-    return result;
 }
 
 function divide(input1, input2){
@@ -25,26 +20,27 @@ function divide(input1, input2){
     }
     else{
         result = input1 / input2;
-        return result;
     }
 }
 
 function operate(input1, input2, operator){
     switch(operator){
-        case "add":
+        case "+":
             add(input1, input2);
             break;
-        case "subtract":
+        case "-":
             subtract(input1, input2);
             break;
-        case "multiply":
+        case "x":
             multiply(input1, input2);
             break;
-        case "divide":
+        case "/":
             divide(input1, input2);
             break;
     }
+    console.log(result);
 }
+
 
 const disp = document.querySelectorAll("button");
 const currentDisplay = document.querySelector(".display");
@@ -62,6 +58,12 @@ disp.forEach((button) => {
         if(buttonClass == "number"){
             //console.log("Added to array!");
             numberInput.push(displayValue);
+            if(typeof( numberInput[1]) !== "undefined"){
+                operate(numberInput[0], numberInput[1], operatorInput[0]);
+                numberInput.splice(0, 2, result);
+                operatorInput.pop();
+                currentDisplay.textContent = result;
+            }
         }
         else if(buttonClass == "operator"){
             operatorInput.push(displayValue);
