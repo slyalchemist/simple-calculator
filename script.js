@@ -49,10 +49,34 @@ function operate(input1, input2, operator){
 const disp = document.querySelectorAll("button");
 const currentDisplay = document.querySelector(".display");
 
+let numberInput = [];
+let operatorInput = [];
+let equation = [];
+
 disp.forEach((button) => {
     button.addEventListener("click", () => {
         displayValue = button.id;
         console.log(displayValue);
         currentDisplay.textContent = displayValue;
+        let buttonClass = button.className;
+        if(buttonClass == "number"){
+            //console.log("Added to array!");
+            numberInput.push(displayValue);
+        }
+        else if(buttonClass == "operator"){
+            operatorInput.push(displayValue);
+        }
+        else if(buttonClass == "operate"){
+            displayEquation(numberInput, operatorInput);
+        }
     })  
 })
+
+function displayEquation(){
+    console.log("Operating!");
+    let length = numberInput.length;
+    for(let i=0; i< length; i++){
+        equation.push(numberInput[i], operatorInput[i]);
+    }
+    console.log(equation);
+}
