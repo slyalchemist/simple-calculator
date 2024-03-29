@@ -2,6 +2,7 @@ let input1;
 let input2;
 let result;
 let operator;
+let displayValue;
 
 function add(input1, input2){
     result = input1 + input2;
@@ -44,3 +45,5 @@ function operate(input1, input2, operator){
             break;
     }
 }
+
+const disp = document.querySelector()
