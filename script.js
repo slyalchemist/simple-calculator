@@ -46,4 +46,13 @@ function operate(input1, input2, operator){
     }
 }
 
-const disp = document.querySelector()
+const disp = document.querySelectorAll("button");
+const currentDisplay = document.querySelector(".display");
+
+disp.forEach((button) => {
+    button.addEventListener("click", () => {
+        displayValue = button.id;
+        console.log(displayValue);
+        currentDisplay.textContent = displayValue;
+    })  
+})
