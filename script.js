@@ -71,8 +71,14 @@ disp.forEach((button) => {
         }
         else if(buttonClass == "operate"){
             compileNumbers();
-            generateResult();
-            clearStorage();
+            if(numberInput[1] == "undefined"){
+                currentDisplay.textContent = "Not enough info!";
+                clearStorage();
+            }
+            else{
+                generateResult();
+                clearStorage();
+            }
         }
         else if (buttonClass == "clear"){
             clearStorage();
@@ -91,6 +97,7 @@ function clearStorage(){
 function compileNumbers(){
     temporaryNumber.splice(0, temporaryNumber.length);
     numberInput.push(temporaryInput);
+    temporaryInput = "undefined";
     operatorInput.push(inputValue);
     currentDisplay.textContent = inputValue;
 }
