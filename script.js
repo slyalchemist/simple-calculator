@@ -20,7 +20,8 @@ function divide(input1, input2){
         result = "You cannot divide by 0!" ;
     }
     else{
-        result = input1 / input2;
+        let unrounded = input1 / input2;
+        result = Math.round(unrounded * 100) / 100;
     }
 }
 
