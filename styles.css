@@ -43,3 +43,9 @@ button{
 .clear{
     width: 280px;
 }
+
+.display{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

@@ -1,6 +1,7 @@
 let result;
 let operator = "add";
 let displayValue;
+const currentDisplay = document.querySelector(".display");
 
 function add(input1, input2){
     result = parseInt(input1) + parseInt(input2);
@@ -15,8 +16,8 @@ function multiply(input1, input2){
 }
 
 function divide(input1, input2){
-    if(input2 == 0){
-        return "error";
+    if(input2 == "0" ){
+        result = "You cannot divide by 0!" ;
     }
     else{
         result = input1 / input2;
@@ -43,7 +44,7 @@ function operate(input1, input2, operator){
 
 
 const disp = document.querySelectorAll("button");
-const currentDisplay = document.querySelector(".display");
+
 
 let temporaryNumber = [];
 let numberInput = [];
