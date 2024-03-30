@@ -92,7 +92,9 @@ disp.forEach((button) => {
             numberInput.splice(0, numberInput.length);
             operatorInput.splice(0, operatorInput.length);
         }
-        
+        else if (buttonClass == "clear"){
+            clearStorage();
+        }
         /* if(buttonClass == "number"){
             //console.log("Added to array!");
             numberInput.push(displayValue);
@@ -116,4 +118,12 @@ function displayEquation(){
         equation.push(numberInput[i], operatorInput[i]);
     }
     console.log(equation);
+}
+
+function clearStorage(){
+    numberInput.splice(0, numberInput.length);
+    operatorInput.splice(0, operatorInput.length);
+    temporaryNumber.splice(0, temporaryNumber.length);
+    currentDisplay.textContent = " ";
+    console.log(numberInput, operatorInput, temporaryNumber);
 }
