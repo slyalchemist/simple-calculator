@@ -45,25 +45,57 @@ function operate(input1, input2, operator){
 const disp = document.querySelectorAll("button");
 const currentDisplay = document.querySelector(".display");
 
+let temporaryNumber = [];
 let numberInput = [];
 let operatorInput = [];
 let equation = [];
+let inputValue;
+let temporaryInput;
 
 disp.forEach((button) => {
     button.addEventListener("click", () => {
-        displayValue = button.id;
-        console.log(displayValue);
-        currentDisplay.textContent = displayValue;
+        inputValue = button.id;
+        //currentDisplay.textContent = displayValue;
         let buttonClass = button.className;
-        if(buttonClass == "number"){
-            //console.log("Added to array!");
-            numberInput.push(displayValue);
+        if(buttonClass !== "operator" && buttonClass == "number"){
+            console.log(inputValue);
+            temporaryNumber.push(inputValue);
+            temporaryInput = temporaryNumber.join("");
+            currentDisplay.textContent = temporaryInput;
+        }
+        else if(buttonClass == "operator"){
+            temporaryNumber.splice(0, temporaryNumber.length);
+            numberInput.push(temporaryInput);
+            operatorInput.push(inputValue);
+            currentDisplay.textContent = inputValue;
+            console.log(temporaryNumber);
+            console.log(numberInput);
+            console.log(operatorInput);
             if(typeof( numberInput[1]) !== "undefined"){
                 operate(numberInput[0], numberInput[1], operatorInput[0]);
                 numberInput.splice(0, 2, result);
-                operatorInput.pop();
+                operatorInput.shift();
                 currentDisplay.textContent = result;
+
             }
+        }
+        else if(buttonClass == "operate"){
+            temporaryNumber.splice(0, temporaryNumber.length);
+            numberInput.push(temporaryInput);
+            operatorInput.push(inputValue);
+            currentDisplay.textContent = inputValue;
+            operate(numberInput[0], numberInput[1], operatorInput[0]);
+            numberInput.splice(0, 2, result);
+            operatorInput.shift();
+            currentDisplay.textContent = result;
+            numberInput.splice(0, numberInput.length);
+            operatorInput.splice(0, operatorInput.length);
+        }
+        
+        /* if(buttonClass == "number"){
+            //console.log("Added to array!");
+            numberInput.push(displayValue);
+            
         }
         else if(buttonClass == "operator"){
             operatorInput.push(displayValue);
@@ -71,6 +103,8 @@ disp.forEach((button) => {
         else if(buttonClass == "operate"){
             displayEquation(numberInput, operatorInput);
         }
+
+        */
     })  
 })
 
