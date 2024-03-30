@@ -1,5 +1,5 @@
 let result;
-let operator = "add";
+let operator;
 let displayValue;
 const currentDisplay = document.querySelector(".display");
 
@@ -49,14 +49,12 @@ const disp = document.querySelectorAll("button");
 let temporaryNumber = [];
 let numberInput = [];
 let operatorInput = [];
-let equation = [];
 let inputValue;
 let temporaryInput;
 
 disp.forEach((button) => {
     button.addEventListener("click", () => {
         inputValue = button.id;
-        //currentDisplay.textContent = displayValue;
         let buttonClass = button.className;
         if(buttonClass !== "operator" && buttonClass == "number"){
             console.log(inputValue);
@@ -65,65 +63,41 @@ disp.forEach((button) => {
             currentDisplay.textContent = temporaryInput;
         }
         else if(buttonClass == "operator"){
-            temporaryNumber.splice(0, temporaryNumber.length);
-            numberInput.push(temporaryInput);
-            operatorInput.push(inputValue);
-            currentDisplay.textContent = inputValue;
-            console.log(temporaryNumber);
-            console.log(numberInput);
-            console.log(operatorInput);
+            compileNumbers();
+            console.log(temporaryNumber, numberInput, operatorInput);
             if(typeof( numberInput[1]) !== "undefined"){
-                operate(numberInput[0], numberInput[1], operatorInput[0]);
-                numberInput.splice(0, 2, result);
-                operatorInput.shift();
-                currentDisplay.textContent = result;
-
+                generateResult();
             }
         }
         else if(buttonClass == "operate"){
-            temporaryNumber.splice(0, temporaryNumber.length);
-            numberInput.push(temporaryInput);
-            operatorInput.push(inputValue);
-            currentDisplay.textContent = inputValue;
-            operate(numberInput[0], numberInput[1], operatorInput[0]);
-            numberInput.splice(0, 2, result);
-            operatorInput.shift();
-            currentDisplay.textContent = result;
-            numberInput.splice(0, numberInput.length);
-            operatorInput.splice(0, operatorInput.length);
+            compileNumbers();
+            generateResult();
+            clearStorage();
         }
         else if (buttonClass == "clear"){
             clearStorage();
+            currentDisplay.textContent = " ";
         }
-        /* if(buttonClass == "number"){
-            //console.log("Added to array!");
-            numberInput.push(displayValue);
-            
-        }
-        else if(buttonClass == "operator"){
-            operatorInput.push(displayValue);
-        }
-        else if(buttonClass == "operate"){
-            displayEquation(numberInput, operatorInput);
-        }
-
-        */
     })  
 })
-
-function displayEquation(){
-    console.log("Operating!");
-    let length = numberInput.length;
-    for(let i=0; i< length; i++){
-        equation.push(numberInput[i], operatorInput[i]);
-    }
-    console.log(equation);
-}
 
 function clearStorage(){
     numberInput.splice(0, numberInput.length);
     operatorInput.splice(0, operatorInput.length);
     temporaryNumber.splice(0, temporaryNumber.length);
-    currentDisplay.textContent = " ";
     console.log(numberInput, operatorInput, temporaryNumber);
+}
+
+function compileNumbers(){
+    temporaryNumber.splice(0, temporaryNumber.length);
+    numberInput.push(temporaryInput);
+    operatorInput.push(inputValue);
+    currentDisplay.textContent = inputValue;
+}
+
+function generateResult(){
+    operate(numberInput[0], numberInput[1], operatorInput[0]);
+    numberInput.splice(0, 2, result);
+    operatorInput.shift();
+    currentDisplay.textContent = result;
 }
