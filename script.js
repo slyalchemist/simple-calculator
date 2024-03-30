@@ -72,7 +72,7 @@ disp.forEach((button) => {
         }
         else if(buttonClass == "operate"){
             compileNumbers();
-            if(numberInput[1] == "undefined"){
+            if(numberInput[0] == "undefined" && numberInput[1] == "undefined"){
                 currentDisplay.textContent = "Not enough info!";
                 clearStorage();
             }
